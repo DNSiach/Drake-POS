@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $page === 'inventory' ? 'Inventory' : ($page === 'sales' ? 'Sales' : 'Dashboard') }} | Manda Market POS</title>
+    <title>{{ $page === 'inventory' ? 'Inventory' : ($page === 'sales' ? 'Sales' : 'Dashboard') }} | DRAKE POS</title>
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     @endif
@@ -11,7 +11,7 @@
 <body>
 <div class="app-shell">
     <aside class="sidebar">
-        <a class="brand" href="{{ route('dashboard') }}"><span class="brand-mark">M</span><span>manda market</span></a>
+        <a class="brand" href="{{ route('dashboard') }}"><span class="brand-mark">D</span><span>DRAKE POS</span></a>
         <p class="workspace-label">STORE OPERATIONS</p>
         <nav class="nav-list">
             <a class="nav-item {{ $page === 'dashboard' ? 'active' : '' }}" href="{{ route('dashboard') }}"><span class="nav-icon">+</span>Dashboard</a>
@@ -41,7 +41,7 @@
                 <section class="page-heading"><div><p class="eyebrow">POINT OF SALE</p><h1>Sales</h1><p class="muted">Record a customer sale and inventory will reduce automatically.</p></div></section>
                 <section class="sales-layout"><div class="panel sale-panel"><div class="panel-header"><div><h2>New sale</h2><p class="muted">Sales clerk: John Sakala</p></div><span class="panel-mark">K</span></div><form class="sale-form" method="POST" action="{{ route('sales.store') }}">@csrf<label>Product<select name="product_id" required><option value="">Choose a product...</option>@foreach ($products as $product)<option value="{{ $product['id'] }}">{{ $product['name'] }} - K{{ number_format($product['retail_price'], 2) }} ({{ $product['stock'] }} left)</option>@endforeach</select></label><label>Quantity<input type="number" name="quantity" min="1" value="1" required></label><button class="button dark" type="submit">Complete sale <span>-&gt;</span></button></form></div><div class="panel"><div class="panel-header"><div><h2>Sales history</h2><p class="muted">Revenue and profit from each transaction.</p></div></div>@forelse ($sales as $sale)<div class="sale-row"><span class="sale-avatar">{{ strtoupper(substr($sale['product'], 0, 1)) }}</span><div><strong>{{ $sale['product'] }}</strong><small>John Sakala &middot; {{ $sale['quantity'] }} units &middot; {{ $sale['date'] }}</small></div><div class="sale-totals"><b>K{{ number_format($sale['revenue'], 2) }}</b><small>Profit K{{ number_format($sale['profit'], 2) }}</small></div></div>@empty<div class="empty-state compact">Sales will appear here after John records a transaction.</div>@endforelse</div></section>
             @endif
-            <footer>Manda Market POS <span>Demo workspace &middot; All values in Zambian Kwacha (K)</span></footer>
+            <footer>DRAKE POS <span>Demo workspace &middot; All values in Zambian Kwacha (K)</span></footer>
         </div>
     </main>
 </div>
