@@ -9,7 +9,7 @@ class PosTest extends TestCase
     public function test_inventory_can_be_added_with_cost_and_retail_prices(): void
     {
         $response = $this->withSession(['pos_products' => [], 'pos_sales' => []])->post('/inventory', [
-            'name' => 'Bread', 'sku' => 'GRO-003', 'category' => 'Bakery',
+            'name' => 'Bread', 'category' => 'Bakery',
             'cost_price' => 8, 'retail_price' => 12, 'stock' => 10,
         ]);
 
@@ -23,7 +23,7 @@ class PosTest extends TestCase
     {
         $response = $this->withSession([
             'pos_products' => [[
-                'id' => 'butter', 'name' => 'Butter', 'sku' => 'GRO-001', 'category' => 'Dairy',
+                'id' => 'butter', 'name' => 'Butter', 'category' => 'Dairy',
                 'cost_price' => 28.0, 'retail_price' => 38.0, 'stock' => 18,
             ]],
             'pos_sales' => [],
